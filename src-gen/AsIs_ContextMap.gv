@@ -1,0 +1,46 @@
+digraph "ContextMapGraph" {
+graph ["imagepath"="/tmp/GraphvizJava"]
+"DataOpsContext" ["margin"="0.3","orientation"="26","shape"="egg","fontsize"="16","style"="bold","label"="DataOpsContext\n","fontname"="sans-serif"]
+"FinancialContext" ["margin"="0.3","orientation"="116","shape"="egg","fontsize"="16","style"="bold","label"="FinancialContext\n","fontname"="sans-serif"]
+"IngenieriaDatosContext" ["margin"="0.3","orientation"="163","shape"="egg","fontsize"="16","style"="bold","label"="IngenieriaDatosContext\n","fontname"="sans-serif"]
+"IngenieriaSoftwareContext" ["margin"="0.3","orientation"="267","shape"="egg","fontsize"="16","style"="bold","label"="IngenieriaSoftwareContext\n","fontname"="sans-serif"]
+"TecnologiaContext" ["margin"="0.3","orientation"="135","shape"="egg","fontsize"="16","style"="bold","label"="TecnologiaContext\n","fontname"="sans-serif"]
+"IngenieriafiabilidadContext" ["margin"="0.3","orientation"="114","shape"="egg","fontsize"="16","style"="bold","label"="IngenieriafiabilidadContext\n","fontname"="sans-serif"]
+"InvestigacionContext" ["margin"="0.3","orientation"="149","shape"="egg","fontsize"="16","style"="bold","label"="InvestigacionContext\n","fontname"="sans-serif"]
+"LegalContext" ["margin"="0.3","orientation"="262","shape"="egg","fontsize"="16","style"="bold","label"="LegalContext\n","fontname"="sans-serif"]
+"IngenieriaDatosContext" -> "DataOpsContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"IngenieriaDatosContext" -> "IngenieriaSoftwareContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"IngenieriaSoftwareContext" -> "TecnologiaContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"IngenieriaSoftwareContext" -> "IngenieriafiabilidadContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"InvestigacionContext" -> "IngenieriaDatosContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">U</td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"InvestigacionContext" -> "LegalContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+"InvestigacionContext" -> "FinancialContext" ["headlabel"=<<table cellspacing="0" cellborder="0" border="0">
+<tr><td bgcolor="white">D</td></tr>
+</table>>,"labeldistance"="0","fontsize"="12","taillabel"=<<table cellspacing="0" cellborder="1" border="0">
+<tr><td bgcolor="white" sides="r">U</td><td sides="trbl" bgcolor="white"><font>OHS</font></td></tr>
+</table>>,"style"="bold","label"="                                        ","dir"="none","fontname"="sans-serif"]
+}
