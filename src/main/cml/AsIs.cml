@@ -1,0 +1,114 @@
+/* Example Context Map written with 'ContextMapper DSL' */
+ContextMap PDAContextMap {
+	type = SYSTEM_LANDSCAPE
+	state = AS_IS
+	/* Add bounded contexts to this context map: */
+	contains InvestigacionContext
+	contains IngenieriaSoftwareContext
+	contains IngenieriaDatosContext
+	contains IngenieriafiabilidadContext
+	contains DataOpsContext
+	contains TecnologiaContext
+	contains LegalContext
+	contains FinancialContext
+	
+
+	/* Define the context relationships: */
+	InvestigacionContext -> IngenieriaDatosContext
+
+	IngenieriaSoftwareContext -> TecnologiaContext
+
+	IngenieriaDatosContext -> IngenieriaSoftwareContext
+
+	IngenieriaDatosContext -> DataOpsContext
+
+	IngenieriaSoftwareContext [OHS]-> IngenieriafiabilidadContext
+
+	LegalContext  <- [OHS]InvestigacionContext
+    
+	FinancialContext  <- [OHS]InvestigacionContext
+}
+
+/* Bounded Context Definitions */
+BoundedContext InvestigacionContext implements InvestigacionDomain {
+	domainVisionStatement = "Contexto encargado de la investigación sobre características de Inmuebles, Inquilinos, Alquiler, Subarrendamiento,
+								 Venta, Información contractual, Geoespacial y alojamiento, Catastral"
+}
+
+BoundedContext IngenieriaSoftwareContext   implements  IngenieriaSoftwareDomain{
+	domainVisionStatement = "Contexto encargado del diseño, desarrollo, mantenimiento y mejora continua de software"
+}
+
+BoundedContext IngenieriaDatosContext    implements    IngenieriaDatosDomain {
+	domainVisionStatement = "Contexto encargado de la organización, procesamiento, trasformación, almacenamiento y calidad de los datos recolectados"
+}
+
+BoundedContext IngenieriafiabilidadContext    implements   IngenieriafiabilidadDomain {
+	domainVisionStatement = "Contexto encargado de garantizar la confiabilidad y disponibilidad continua de sistemas y servicios"
+}
+
+BoundedContext DataOpsContext    implements   DataOpsDomain  {
+	domainVisionStatement = "Contexto encargado de la gestión eficiente y ágil de los procesos relacionados con los datos"
+}
+
+BoundedContext TecnologiaContext    implements   TecnologiaDomain {
+	domainVisionStatement = "Contexto encargado de la administración de infraestructuras tecnológicas, implementación y mantenimiento de sistemas, seguridad de la información y la adopción de nuevas tecnologías"
+}
+
+BoundedContext LegalContext implements   LegalDomain {
+	domainVisionStatement = "Contexto encargado de la gestión jurídica de la empresa"
+}
+
+BoundedContext FinancialContext implements FinancialDomain {
+	domainVisionStatement = "Contexto que se encarga de la gestión financiera de la empresa"
+}
+
+
+
+/* Domain & Subdomain Definitions */
+Domain PDADomain {
+	domainVisionStatement = "Fuente confiable de información sobre bienes raíces comerciales"
+
+	Subdomain InvestigacionDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Subdominio encargado de la Investigación de Negocio"
+	}
+
+	Subdomain IngenieriaSoftwareDomain {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio encargado del desarrollo software"
+	}
+
+	Subdomain IngenieriaDatosDomain {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio encargado del análisis de datos"
+	}
+
+	Subdomain IngenieriafiabilidadDomain {
+		type = GENERIC_SUBDOMAIN
+		domainVisionStatement = "Subdominio encargado Garantizar la confiabilidad y disponibilidad continua de sistemas y servicios"
+	}
+
+	Subdomain DataOpsDomain  {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio encargado de la gestión eficiente y ágil de los procesos relacionados con los datos"
+	}
+
+	Subdomain TecnologiaDomain  {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio encargado de la administración de infraestructuras tecnológicas, implementación y mantenimiento de sistemas"
+	}
+
+	Subdomain LegalDomain  {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio encargado que se encarga de la gestión jurídica de la empresa"
+	}
+
+
+	Subdomain FinancialDomain  {
+		type = SUPPORTING_DOMAIN
+		domainVisionStatement = "Subdominio que se  encarga de la gestión financiera de la empresa"
+	}
+
+}
+
