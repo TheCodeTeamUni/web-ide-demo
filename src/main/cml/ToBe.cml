@@ -1,125 +1,143 @@
-/* Example Context Map written with 'ContextMapper DSL' */
+/*Context Map written with 'ContextMapper DSL' */
 ContextMap PDAContextMap {
 	type = SYSTEM_LANDSCAPE
 	state = TO_BE
 	/* Add bounded contexts to this context map: */
-	contains InvestigacionContext
-	contains IngenieriaSoftwareContext
-	contains IngenieriaDatosContext
-	contains IngenieriafiabilidadContext
-	contains DataOpsContext
-	contains TecnologiaContext
-	contains LegalContext
-	contains InternationalOperationsContext
-	contains FinancialContext
-
+	contains IngestaDatosFuenteGlobalContext
+	contains CapturaDatosManualGlobalContext
+	contains ProcesamientoLimpiezaDatosContext
+	contains ValidacionDatosContext
+	contains EnriquecimientoDatosContext
+	contains AnaliticaContext
+	contains InquilinosContext
+	contains PropiedadesContext
+	contains InformeEstadoMercadoContext
+	contains TransaccionesVentaContext
+	contains TransaccionesArrendamientoContext
 
 	/* Define the context relationships: */
-	InvestigacionContext -> IngenieriaDatosContext
+	IngestaDatosFuenteGlobalContext -> [ACL]ProcesamientoLimpiezaDatosContext
 
-	IngenieriaSoftwareContext -> TecnologiaContext
+	CapturaDatosManualGlobalContext -> [ACL]ProcesamientoLimpiezaDatosContext
 
-	IngenieriaDatosContext -> IngenieriaSoftwareContext
+	ProcesamientoLimpiezaDatosContext -> ValidacionDatosContext
 
-	IngenieriaDatosContext -> DataOpsContext
+	ValidacionDatosContext -> EnriquecimientoDatosContext
 
-	IngenieriaSoftwareContext -> IngenieriafiabilidadContext
+	EnriquecimientoDatosContext -> AnaliticaContext
 
-	LegalContext  <- [OHS]InvestigacionContext
+	AnaliticaContext [OHS] -> InquilinosContext
 
-	InvestigacionContext [OHS] ->  [D, ACL]InternationalOperationsContext
+	AnaliticaContext [OHS]-> PropiedadesContext
 
-	LegalContext  -> [D, ACL]InternationalOperationsContext
+	AnaliticaContext [OHS]-> InformeEstadoMercadoContext
 
-	FinancialContext  <- [OHS]InvestigacionContext
+	AnaliticaContext [OHS]-> TransaccionesVentaContext
+
+	AnaliticaContext [OHS]-> TransaccionesArrendamientoContext
 }
 
 /* Bounded Context Definitions */
-BoundedContext InvestigacionContext implements InvestigacionDomain {
-	domainVisionStatement = "Contexto encargado de la investigación sobre características de Inmuebles, Inquilinos, Alquiler, Subarrendamiento,
-								 Venta, Información contractual, Geoespacial y alojamiento, Catastral"
+BoundedContext IngestaDatosFuenteGlobalContext implements CapturaDatosManualGlobalDomain {
+	domainVisionStatement = "Contexto encargado de la ingestión de datos desde diversas fuentes con enfoque global"
 }
 
-BoundedContext IngenieriaSoftwareContext   implements  IngenieriaSoftwareDomain{
-	domainVisionStatement = "Contexto encargado del diseño, desarrollo, mantenimiento y mejora continua de software"
+BoundedContext CapturaDatosManualGlobalContext  implements  CapturaDatosManualGlobalDomain{
+	domainVisionStatement = "Contexto encargado de la captura manual de datos por parte de investigadores de campo con enfoque global"
 }
 
-BoundedContext IngenieriaDatosContext    implements    IngenieriaDatosDomain {
-	domainVisionStatement = "Contexto encargado de la organización, procesamiento, trasformación, almacenamiento y calidad de los datos recolectados"
+BoundedContext ProcesamientoLimpiezaDatosContext    implements    ProcesamientoLimpiezaDatosDomain {
+	domainVisionStatement = "Contexto encargado de la organización, procesamiento, transformación, almacenamiento y calidad de los datos recolectados."
 }
 
-BoundedContext IngenieriafiabilidadContext    implements   IngenieriafiabilidadDomain {
-	domainVisionStatement = "Contexto encargado de garantizar la confiabilidad y disponibilidad continua de sistemas y servicios"
+BoundedContext  ValidacionDatosContext   implements   ValidacionDatosDomain {
+	domainVisionStatement = "Contexto encargado de la validación de datos, incluyendo auditoría de datos."
 }
 
-BoundedContext DataOpsContext    implements   DataOpsDomain  {
-	domainVisionStatement = "Contexto encargado de la gestión eficiente y ágil de los procesos relacionados con los datos"
+BoundedContext  EnriquecimientoDatosContext   implements   EnriquecimientoDatosDomain  {
+	domainVisionStatement = "Contexto encargado de enriquecer datos a través de investigaciones adicionales con enfoque global"
 }
 
-BoundedContext TecnologiaContext    implements   TecnologiaDomain {
-	domainVisionStatement = "Contexto encargado de la administración de infraestructuras tecnológicas, implementación y mantenimiento de sistemas, seguridad de la información y la adopción de nuevas tecnologías"
+BoundedContext  AnaliticaContext   implements   AnaliticaDomain  {
+	domainVisionStatement = "Contexto encargado de capacidades analíticas, incluyendo análisis internacional"
 }
 
-BoundedContext LegalContext implements   LegalDomain {
-	domainVisionStatement = "Contexto encargado de la gestión jurídica de la empresa"
+BoundedContext  InquilinosContext   implements   InquilinosDomain {
+	domainVisionStatement = "Contexto encargado de la validación global de datos relacionados con inquilinos."
 }
 
-BoundedContext InternationalOperationsContext implements InternationalOperationsDomain {
-	domainVisionStatement = "Contexto que se encarga de la gestión de las operaciones internacionales de la empresa"
+BoundedContext PropiedadesContext implements   PropiedadesDomain {
+	domainVisionStatement = "Contexto encargado de la gestión internacional de datos relacionados con propiedades."
 }
 
-BoundedContext FinancialContext implements FinancialDomain {
-	domainVisionStatement = "Contexto que se encarga de la gestión de las operaciones internacionales de la empresa"
+BoundedContext InformeEstadoMercadoContext implements InformeEstadoMercadoDomain {
+	domainVisionStatement = "Contexto que se encarga de la generación de informes y análisis con enfoque global."
 }
 
+BoundedContext TransaccionesVentaContext implements TransaccionesVentaDomain {
+	domainVisionStatement = "Contexto que se encarga del seguimiento internacional de transacciones de venta."
+}
+
+BoundedContext TransaccionesArrendamientoContext implements TransaccionesArrendamientoDomain {
+	domainVisionStatement = "Contexto que se encarga del registro global de transacciones de arrendamiento."
+}
 
 /* Domain & Subdomain Definitions */
 Domain PDADomain {
 	domainVisionStatement = "Fuente confiable de información sobre bienes raíces comerciales"
+	
 
-	Subdomain InvestigacionDomain {
+Subdomain  IngestaDeDatosFuenteGlobalDomain {
 		type = CORE_DOMAIN
-		domainVisionStatement = "Subdominio encargado de la Investigación de Negocio"
+		domainVisionStatement = "Capturar datos de diversas fuentes con enfoque global"
 	}
 
-	Subdomain IngenieriaSoftwareDomain {
+	Subdomain  CapturaDatosManualGlobalDomain {
+		type = CORE_DOMAIN
+		domainVisionStatement = "Capturar datos manualmente mediante investigadores de campo con enfoque global"
+	}
+
+	Subdomain  ProcesamientoLimpiezaDatosDomain {
 		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio encargado del desarrollo software"
+		domainVisionStatement = "Procesar y limpiar datos."
 	}
 
-	Subdomain IngenieriaDatosDomain {
+	Subdomain  ValidacionDatosDomain {
 		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio encargado del análisis de datos"
+		domainVisionStatement = "Validar datos a través de la auditoría de datos."
 	}
 
-	Subdomain IngenieriafiabilidadDomain {
-		type = GENERIC_SUBDOMAIN
-		domainVisionStatement = "Subdominio encargado Garantizar la confiabilidad y disponibilidad continua de sistemas y servicios"
-	}
-
-	Subdomain DataOpsDomain  {
+	Subdomain  EnriquecimientoDatosDomain {
 		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio encargado de la gestión eficiente y ágil de los procesos relacionados con los datos"
+		domainVisionStatement = "Enriquecer datos mediante investigación adicional."
 	}
 
-	Subdomain TecnologiaDomain  {
+	Subdomain  AnaliticaDomain {
 		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio encargado de la administración de infraestructuras tecnológicas, implementación y mantenimiento de sistemas"
+		domainVisionStatement = "Realizar análisis sobre datos y tendencias del mercado."
 	}
 
-	Subdomain LegalDomain  {
+	Subdomain  InquilinosDomain {
 		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio encargado que se encarga de la gestión jurídica de la empresa"
+		domainVisionStatement = "Validar y gestionar información sobre inquilinos."
 	}
 
-	Subdomain InternationalOperationsDomain  {
+	Subdomain  PropiedadesDomain {
 		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio que se  encarga de la gestión de las operaciones internacionales de la empresa"
+		domainVisionStatement = "Gestionar datos relacionados con propiedades."
 	}
 
-	Subdomain FinancialDomain  {
-		type = SUPPORTING_DOMAIN
-		domainVisionStatement = "Subdominio que se  encarga de la gestión financiera de la empresa"
+	Subdomain  InformeEstadoMercadoDomain {
+		domainVisionStatement = "Generar informes y análisis sobre el estado del mercado."
 	}
+
+	Subdomain  TransaccionesVentaDomain {
+		domainVisionStatement =  "Registrar y realizar seguimiento de transacciones de venta."
+	}
+
+	Subdomain  TransaccionesArrendamientoDomain {
+		domainVisionStatement = "Registrar y realizar seguimiento de transacciones de arrendamiento."
+	}
+
 }
 
